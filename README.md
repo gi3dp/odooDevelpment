@@ -3,4 +3,4 @@
 https://www.odoo.com/documentation/9.0/howtos/backend.html
 todo : Advanced Vi
 ##school
-to do:fix bug
+to do:fix bug.
