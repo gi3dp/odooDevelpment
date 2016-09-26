@@ -1,141 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <openerp>
-  <data>
-    <!-- explicit school view definition -->
-
-    <record model="ir.ui.view" id="school.school">
-      <field name="name">school</field>
-      <field name="model">school.school</field>
-      <field name="arch" type="xml">
-
-
-         <tree>
-
-            <field name="x_city"/>
-            <field name="x_town"/>
-            <field name="x_schoolName"/>
-            <field name="x_equipmentNumber"/>
-            <field name="x_schoolAddress"/>
-            <field name="x_Name"/>
-            <field name="x_contrctPhoneNumber"/>
-            <field name="x_checkCondition"/>
-            <field name="x_checkCertificationNumber"/>
-
-            <field name="x_receptionData"/>
-            <field name="x_trainingteacher"/>
-            <field name="x_phoneNumber"/>
-            <field name="x_contact2"/>
-            <field name="x_phoneNumber2"/>
-            <field name="x_QQ"/>
-            <field name="x_mail"/>
-            <field name="x_remark"/>
-
-        </tree>
-
-
-          <form string="Session Form">
-                    <sheet>
-                        <group>
-                            <group string="General">
-                                 <field name="x_city"/>
-                                <field name="x_town"/>
-                                <field name="x_schoolName"/>
-                                <field name="x_equipmentNumber"/>
-                                <field name="x_schoolAddress"/>
-                                <field name="x_Name"/>
-                                <field name="x_contrctPhoneNumber"/>
-                                <field name="x_checkCondition"/>
-                                <field name="x_checkCertificationNumber"/>
-                            </group>
-                            <group string="Schedule">
-                                <field name="x_receptionData"/>
-                               <field name="x_trainingteacher"/>
-                               <field name="x_phoneNumber"/>
-                               <field name="x_contact2"/>
-                               <field name="x_phoneNumber2"/>
-                               <field name="x_QQ"/>
-                               <field name="x_mail"/>
-                              <field name="x_remark"/>
-                            </group>
-                        </group>
-                    </sheet>
-          </form>
-
-
-
-      </field>
-    </record>
-
-
-
-     <!-- <record model="ir.ui.view" id="school.school">
-            <field name="name">school</field>
-            <field name="model">school.schoo</field>
+    <data>
+        <!-- explicit school view definition -->
+        <record model="ir.ui.view" id="school_tree_view">
+            <field name="name">school.tree</field>
+            <field name="model">school.school</field>
             <field name="arch" type="xml">
-                <tree string="Session Tree">
-                   <field name="x_city"/>
-                  <field name="x_town"/>
-                  <field name="x_schoolName"/>
-                  <field name="x_equipmentNumber"/>
-                  <field name="x_schoolAddress"/>
-                  <field name="x_Name"/>
-                  <field name="x_contrctPhoneNumber"/>
-                  <field name="x_checkCondition"/>
-                  <field name="x_checkCertificationNumber"/>
 
-                  <field name="x_receptionData"/>
-                  <field name="x_trainingteacher"/>
-                  <field name="x_phoneNumber"/>
-                  <field name="x_contact2"/>
-                  <field name="x_phoneNumber2"/>
-                  <field name="x_QQ"/>
-                  <field name="x_mail"/>
-                  <field name="x_remark"/>
+
+                <tree string="school tree">
+
+                    <field name="x_city"/>
+                    <field name="x_town"/>
+                    <field name="x_schoolName"/>
+                    <field name="x_equipmentNumber"/>
+                    <field name="x_schoolAddress"/>
+                    <field name="x_Name"/>
+                    <field name="x_contractPhoneNumber"/>
+                    <field name="x_checkCondition"/>
+                    <field name="x_checkCertificationNumber"/>
+
+                    <field name="x_receptionData"/>
+                    <field name="x_trainingteacher"/>
+                    <field name="x_phoneNumber"/>
+                    <field name="x_contact2"/>
+                    <field name="x_phoneNumber2"/>
+                    <field name="x_QQ"/>
+                    <field name="x_mail"/>
+                    <field name="x_remark"/>
+
                 </tree>
             </field>
-        </record>-->
+        </record>
+        <record model="ir.ui.view" id="school_form_view">
+            <field name="name">school.form</field>
+            <field name="model">school.school</field>
+            <field name="arch" type="xml">
+                <form string="School Form">
+                    <sheet>
+                        <group>
+                            <group string="学校信息">
+                                <field name="x_schoolName"/>
+                                <field name="x_city"/>
+                                <field name="x_town"/>
+                                <field name="x_schoolAddress"/>
+                                <field name="x_equipmentNumber"/>
 
 
+                            </group>
+                            <group string="验收情况">
+                                <field name="x_checkCondition"/>
+                                <field name="x_checkCertificationNumber"/>
+                                <field name="x_receptionData"/>
+                                <field name="x_remark"/>
 
 
+                            </group>
+                            <notebook>
+                                <page string="联系人1">
+                                    <field name="x_Name" placeholder="姓名"/>
+                                    <field name="x_contractPhoneNumber" placeholder="电话(座机或手机)"/>
+                                    <field name="x_QQ" placeholder="qq"/>
+                                    <field name="x_mail" placeholder="邮箱"/>
+                                </page>
+                                <page string="联系人2">
+                                    <field name="x_contact2" placeholder="姓名"/>
+                                    <field name="x_phoneNumber2" placeholder="电话(座机或手机)"/>
+g
+                                </page>
+                                <page string="培训老师">
+                                    <field name="x_trainingteacher" placeholder="姓名"/>
+                                    <field name="x_phoneNumber" placeholder="电话(座机或手机)"/>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-    <!-- actions opening views on models -->
 
-    <!--<record model="ir.actions.act_window" id="school.action_window">
-      <field name="name">school</field>
-      <field name="res_model">school.school</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+        <record model="ir.actions.act_window" id="school_list_action">
+            <field name="name">验收信息</field>
+            <field name="res_model">school.school</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">登记一位老师的信息
+                </p>
+            </field>
+        </record>
 
-    <!-- server action to the one above -->
+        <!-- Top menu item -->
 
-    <record model="ir.actions.server" id="school.action_server">
-      <field name="name">school server</field>
-      <field name="school.school" ref="model_school_session"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
+        <menuitem name="验收" id="main_school_root"/>
+
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem name="信息" id="school_menu" parent="main_school_root" action="school_list_action"/>
 
 
-    <!-- Top menu item -->
-
-    <menuitem name="school" id="school.menu_root"/>
-    -->
-
-    <menuitem name="Menu 1" id="school.menu_1" parent="school.menu_root"/>
-    -->
-    <!-- actions -->
-
-    <menuitem name="List" id="school.menu_1_school" parent="school.menu_1"
-              action="school.action_window"/>
-
-    -->
-  </data>
+    </data>
 </openerp>
 
 
