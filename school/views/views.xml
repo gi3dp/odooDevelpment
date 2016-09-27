@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- explicit school view definition -->
+        <record model="ir.ui.view" id="school_tree_view">
+            <field name="name">school.tree</field>
+            <field name="model">school.school</field>
+            <field name="arch" type="xml">
+
+
+                <tree string="school tree">
+
+                    <field name="x_city"/>
+                    <field name="x_town"/>
+                    <field name="x_schoolName"/>
+                    <field name="x_equipmentNumber"/>
+                    <field name="x_schoolAddress"/>
+                    <field name="x_Name"/>
+                    <field name="x_contractPhoneNumber"/>
+                    <field name="x_checkCondition"/>
+                    <field name="x_checkCertificationNumber"/>
+
+                    <field name="x_receptionData"/>
+                    <field name="x_trainingteacher"/>
+                    <field name="x_phoneNumber"/>
+                    <field name="x_contact2"/>
+                    <field name="x_phoneNumber2"/>
+                    <field name="x_QQ"/>
+                    <field name="x_mail"/>
+                    <field name="x_remark"/>
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="school_form_view">
+            <field name="name">school.form</field>
+            <field name="model">school.school</field>
+            <field name="arch" type="xml">
+                <form string="School Form">
+                    <sheet>
+                        <group>
+                            <group string="学校信息">
+                                <field name="x_schoolName"/>
+                                <field name="x_city"/>
+                                <field name="x_town"/>
+                                <field name="x_schoolAddress"/>
+                                <field name="x_equipmentNumber"/>
+
+
+                            </group>
+                            <group string="验收情况">
+                                <field name="x_checkCondition"/>
+                                <field name="x_checkCertificationNumber"/>
+                                <field name="x_receptionData"/>
+                                <field name="x_remark"/>
+
+
+                            </group>
+                            <notebook>
+                                <page string="联系人1">
+                                    <field name="x_Name" placeholder="姓名"/>
+                                    <field name="x_contractPhoneNumber" placeholder="电话(座机或手机)"/>
+                                    <field name="x_QQ" placeholder="qq"/>
+                                    <field name="x_mail" placeholder="邮箱"/>
+                                </page>
+                                <page string="联系人2">
+                                    <field name="x_contact2" placeholder="姓名"/>
+                                    <field name="x_phoneNumber2" placeholder="电话(座机或手机)"/>
+g
+                                </page>
+                                <page string="培训老师">
+                                    <field name="x_trainingteacher" placeholder="姓名"/>
+                                    <field name="x_phoneNumber" placeholder="电话(座机或手机)"/>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="school_search_view">
+            <field name="name">school.search</field>
+            <field name="model">school.school</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="搜索">
+                    <field name="x_city"/>
+                    <field name="x_town"/>
+                    <field name="x_schoolName"/>
+                    <!--<field name="x_equipmentNumber"/>-->
+                    <field name="x_schoolAddress"/>
+                    <field name="x_Name"/>
+                    <field name="x_contractPhoneNumber"/>
+                    <!--<field name="x_checkCondition"/>-->
+                    <!--<field name="x_checkCertificationNumber"/>-->
+
+                    <!--<field name="x_receptionData"/>-->
+                    <!--<field name="x_trainingteacher"/>-->
+                    <!--<field name="x_phoneNumber"/>-->
+                    <!--<field name="x_contact2"/>-->
+                    <!--<field name="x_phoneNumber2"/>-->
+                    <!--<field name="x_QQ"/>-->
+                    <!--<field name="x_mail"/>-->
+                    <!--<field name="x_remark"/>-->
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="school_list_action">
+            <field name="name">验收信息</field>
+            <field name="res_model">school.school</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">登记一位老师的信息
+                </p>
+            </field>
+        </record>
+
+        <!-- Top menu item -->
+
+        <menuitem name="验收" id="main_school_root"/>
+
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem name="信息" id="school_menu" parent="main_school_root" action="school_list_action"/>
+
+
+    </data>
+</openerp>
+
+
+
