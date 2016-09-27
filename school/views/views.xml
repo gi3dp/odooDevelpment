@@ -79,11 +79,39 @@ g
             </field>
         </record>
 
+        <record model="ir.ui.view" id="school_search_view">
+            <field name="name">school.search</field>
+            <field name="model">school.school</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="搜索">
+                    <field name="x_city"/>
+                    <field name="x_town"/>
+                    <field name="x_schoolName"/>
+                    <!--<field name="x_equipmentNumber"/>-->
+                    <field name="x_schoolAddress"/>
+                    <field name="x_Name"/>
+                    <field name="x_contractPhoneNumber"/>
+                    <!--<field name="x_checkCondition"/>-->
+                    <!--<field name="x_checkCertificationNumber"/>-->
+
+                    <!--<field name="x_receptionData"/>-->
+                    <!--<field name="x_trainingteacher"/>-->
+                    <!--<field name="x_phoneNumber"/>-->
+                    <!--<field name="x_contact2"/>-->
+                    <!--<field name="x_phoneNumber2"/>-->
+                    <!--<field name="x_QQ"/>-->
+                    <!--<field name="x_mail"/>-->
+                    <!--<field name="x_remark"/>-->
+                </search>
+            </field>
+        </record>
+
 
         <record model="ir.actions.act_window" id="school_list_action">
             <field name="name">验收信息</field>
             <field name="res_model">school.school</field>
-            <field name="view_type">tree</field>
+            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">登记一位老师的信息
