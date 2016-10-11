@@ -1,0 +1,66 @@
+<openerp>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="news_publicize_tree_view">
+      <field name="name">新闻列表</field>
+      <field name="model">news.news</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="title"/>
+          <field name="source_id"/>
+          <field name="website" widget='url'/>
+          <field name="_create_date"/>
+          <field name="categorization" />
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="news_publicize_form_view">
+      <field name="name">新闻创建</field>
+      <field name="model">news.news</field>
+      <field name="arch" type="xml">
+        <form string="新闻视图">
+          <sheet>
+            <group>
+          <field name="title"/>
+          <field name="source_id"/>
+          <field name="website"/>
+          <field name="_create_date"/>
+          <field name="categorization" widget='selection'/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="news.action_publicize">
+      <field name="name">新闻资讯</field>
+      <field name="res_model">news.news</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">登记一条的对外宣传的新闻信息</p>
+      </field>
+    </record>
+    -->
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="信息" id="news.menu_root"/>
+    -->
+    <!-- menu categories -->
+
+    <menuitem name="宣传" id="news.publicize" parent="news.menu_root" action="news.action_publicize"/>
+
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="news.menu_1_list" parent="news.menu_1"
+              action="news.action_window"/>
+    <menuitem name="Server to list" id="news" parent="news.menu_2"
+              action="news.action_server"/>
+    -->
+  </data>
+</openerp>

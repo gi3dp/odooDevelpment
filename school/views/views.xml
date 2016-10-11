@@ -23,8 +23,8 @@
                     <field name="x_receptionData"/>
                     <field name="x_trainingteacher"/>
                     <field name="x_phoneNumber"/>
-                    <field name="x_contact2"/>
-                    <field name="x_phoneNumber2"/>
+                    <!--<field name="x_contact2"/>-->
+                    <!--<field name="x_phoneNumber2"/>-->
                     <field name="x_QQ"/>
                     <field name="x_mail"/>
                     <field name="x_remark"/>
@@ -66,7 +66,6 @@
                                 <page string="联系人2">
                                     <field name="x_contact2" placeholder="姓名"/>
                                     <field name="x_phoneNumber2" placeholder="电话(座机或手机)"/>
-g
                                 </page>
                                 <page string="培训老师">
                                     <field name="x_trainingteacher" placeholder="姓名"/>
@@ -82,29 +81,37 @@ g
         <record model="ir.ui.view" id="school_search_view">
             <field name="name">school.search</field>
             <field name="model">school.school</field>
-            <field name="type">search</field>
+            <!--<field name="type">search</field>-->
+
             <field name="arch" type="xml">
                 <search string="搜索">
-                    <field name="x_city"/>
-                    <field name="x_town"/>
-                    <field name="x_schoolName"/>
-                    <!--<field name="x_equipmentNumber"/>-->
-                    <field name="x_schoolAddress"/>
-                    <field name="x_Name"/>
-                    <field name="x_contractPhoneNumber"/>
-                    <!--<field name="x_checkCondition"/>-->
-                    <!--<field name="x_checkCertificationNumber"/>-->
-
-                    <!--<field name="x_receptionData"/>-->
-                    <!--<field name="x_trainingteacher"/>-->
-                    <!--<field name="x_phoneNumber"/>-->
-                    <!--<field name="x_contact2"/>-->
-                    <!--<field name="x_phoneNumber2"/>-->
-                    <!--<field name="x_QQ"/>-->
-                    <!--<field name="x_mail"/>-->
-                    <!--<field name="x_remark"/>-->
+                    <field  name="x_Name" string="姓名和学校地址名称" filter_domain="['|','|',('x_Name','ilike',self),('x_contact2','ilike',self),
+                    ('x_schoolAddress','ilike',self)]"/>
+                    <field name="x_schoolName" string="学校名或地址" filter_domain="['|',('x_schoolName','ilike',self),('x_schoolAddress','ilke',self)]"/>
+                    <field name="x_remark" help="建议输入数字查找备注" filter_domain="[('x_remark','ilike',self)]"/>
+                    <field name="x_phoneNumber" string="输入部分数字查找电话或qq" filter_domain="['|','|',('x_phoneNumber','ilike',self),
+                    ('x_phoneNumber2','ilike',self),('x_QQ','ilike',self),]"/>
+                    <separator/>
+                    <filter string="未验收" name="notCheck" domain="[('x_checkCondition','=',0)]"/>
+                    <filter string="有多套设备" name="multiDevice" domain="[('x_equipmentNumber', '>', 1)]"/>
+                    <separator/>
+                    <filter string="服务组1" help="陈治" filter_domain="['|','|','|','|','|','|','|','|','|','|','|',
+                    ('x_city','=','大理州'),('x_city','=','楚雄州'),('x_city','=','丽江'),('x_city','=','德宏州'),
+                    ('x_city','=','迪庆州'),('x_city','=','怒江'),('x_city','=','保山市'),
+                    ('x_town','=','西山'),('x_town','=','晋宁'),('x_town','=','富民'),('x_town','=','禄劝'),('x_town','=','安宁市')]"/>
+                    <filter string="服务组3" help="杨文智" filter_domain="['|','|','|','|','|','|','|','|',
+                    ('x_city','=','文山'),('x_city','=','红河州'),('x_city','=','玉溪'),
+                    ('x_town','=','官渡'),('x_town','=','呈贡'),('x_town','=','宜良'),('x_town','=','石林'),('x_town','=','阳宗海'),('x_town','=','大板桥')]"/>
+                    <filter string="服务组2" help="何其霖" filter_domain="['|','|','|','|','|','|','|','|','|',
+                    ('x_city','=','昭通市'),('x_city','=','曲靖'),('x_city','=','临沧'),('x_city','=','普洱'),('x_city','=','西双版纳'),
+                    ('x_town','=','五华'),('x_town','=','盘龙'),('x_town','=','东川'),('x_town','=','寻甸'),('x_town','=','嵩明县')]"/>
+                    <group expand="0" name="group_by" string="Group By">
+                        <filter name="xx_town" string="县区"  context="{'group_by':'x_town'}"/>
+                        <filter name="xx_city" string="州，市"  context="{'group_by':'x_city'}"/>
+                    </group>
                 </search>
             </field>
+
         </record>
 
 
@@ -119,13 +126,25 @@ g
             </field>
         </record>
 
+        <record model="ir.actions.act_window" id="EIEC_form_action">
+            <field name="name">电教馆</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">登记某电教馆的信息
+                </p>
+            </field>
+        </record>
+
         <!-- Top menu item -->
 
-        <menuitem name="验收" id="main_school_root"/>
+        <menuitem name="售后" id="main_school_root"/>
 
         <!-- A first level in the left side menu is needed
              before using action= attribute -->
-        <menuitem name="信息" id="school_menu" parent="main_school_root" action="school_list_action"/>
+        <menuitem name="验收信息" id="school_menu" parent="main_school_root" action="school_list_action"/>
+        <menuitem name="电教馆" id="EIEC_menu" parent="main_school_root" action="EIEC_form_action"/>
 
 
     </data>
