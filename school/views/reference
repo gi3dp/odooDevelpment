@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<search string="Search Partner">
+    <field name="name" filter_domain="['|','|',('display_name','ilike',self),('ref','=',self),('email','ilike',self)]"/>
+    <!--定义搜索“名称”规则：显示名或者ref或者email符合搜索词条就能搜索到-->
+    <filter help="My Partners" domain="[('user_id','=',uid)]"/>
+    <!--筛选销售员是自己的客户-->
+    <separator/>
+    <filter string="Persons" name="type_person" domain="[('is_company','=',0)]"/>
+    <filter string="Companies" name="type_company" domain="[('is_company','=',1)]"/>
+    <!--筛选个人还是公司-->
+    <separator/>
+    <filter string="Customers" name="customer" domain="[('customer','=',1), ('parent_id', '=', False)]"/>
+    <filter string="Vendors" name="supplier" domain="[('supplier','=',1), ('parent_id', '=', False)]"/>
+    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+    <!--筛选 客户 供应商 归档-->
+    <separator/>
+    <field name="category_id" string="Tag" filter_domain="[('category_id','ilike', self)]"/>
+    <!--搜索标签-->
+    <field name="user_id"/>
+    <field name="parent_id" domain="[('is_company','=',1)]" operator="child_of"/>
+    <!--搜索销售员 关联公司-->
+
+    <group expand="0" name="group_by" string="Group By">
+        <filter name="salesperson" string="Salesperson" domain="[]" context="{'group_by' : 'user_id'}"/>
+        <filter string="Company" context="{'group_by': 'parent_id'}"/>
+        <filter string="Country" context="{'group_by': 'country_id'}"/>
+    </group>
+    <!--定义分组（主要用context的group_by）-->
+</search>
+
+{"search_default_customer":1}
+auto_search == True
+
+
