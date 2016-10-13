@@ -7,9 +7,9 @@
             <field name="model">school.school</field>
             <field name="arch" type="xml">
 
-
+               <!--一树视图-->
                 <tree string="school tree">
-
+                    <!--基本字段定义-->
                     <field name="x_city"/>
                     <field name="x_town"/>
                     <field name="x_schoolName"/>
@@ -23,6 +23,8 @@
                     <field name="x_receptionData"/>
                     <field name="x_trainingteacher"/>
                     <field name="x_phoneNumber"/>
+
+                    <!--contact2和x_phoneNumber2在树视图中不可见-->
                     <!--<field name="x_contact2"/>-->
                     <!--<field name="x_phoneNumber2"/>-->
                     <field name="x_QQ"/>
@@ -32,6 +34,7 @@
                 </tree>
             </field>
         </record>
+        <!--信息分组-->
         <record model="ir.ui.view" id="school_form_view">
             <field name="name">school.form</field>
             <field name="model">school.school</field>
@@ -78,11 +81,12 @@
             </field>
         </record>
 
+
         <record model="ir.ui.view" id="school_search_view">
             <field name="name">school.search</field>
             <field name="model">school.school</field>
             <!--<field name="type">search</field>-->
-
+            <!--一搜索视图-->
             <field name="arch" type="xml">
                 <search string="搜索">
                     <field  name="x_Name" string="姓名和学校地址名称" filter_domain="['|','|',('x_Name','ilike',self),('x_contact2','ilike',self),
@@ -91,10 +95,15 @@
                     <field name="x_remark" help="建议输入数字查找备注" filter_domain="[('x_remark','ilike',self)]"/>
                     <field name="x_phoneNumber" string="输入部分数字查找电话或qq" filter_domain="['|','|',('x_phoneNumber','ilike',self),
                     ('x_phoneNumber2','ilike',self),('x_QQ','ilike',self),]"/>
+
+                    <!--添加seperate，自定义筛选未验收的-->
                     <separator/>
+                     <!--自定义筛选未验收的-->
                     <filter string="未验收" name="notCheck" domain="[('x_checkCondition','=',0)]"/>
+                     <!--点action后默认显示为验收的-->
                     <filter string="有多套设备" name="multiDevice" domain="[('x_equipmentNumber', '>', 1)]"/>
                     <separator/>
+                      <!--在售产品里面添加四种报价单，单独分拆的报价-->
                     <filter string="服务组1" help="陈治" filter_domain="['|','|','|','|','|','|','|','|','|','|','|',
                     ('x_city','=','大理州'),('x_city','=','楚雄州'),('x_city','=','丽江'),('x_city','=','德宏州'),
                     ('x_city','=','迪庆州'),('x_city','=','怒江'),('x_city','=','保山市'),
@@ -114,7 +123,7 @@
 
         </record>
 
-
+        <!-- 新建记录-->
         <record model="ir.actions.act_window" id="school_list_action">
             <field name="name">验收信息</field>
             <field name="res_model">school.school</field>
@@ -139,11 +148,16 @@
 
         <!-- Top menu item -->
 
+       <!--一级菜单微售后-->
         <menuitem name="售后" id="main_school_root"/>
 
         <!-- A first level in the left side menu is needed
              before using action= attribute -->
+
+        <!--二级菜单验收信息-->
         <menuitem name="验收信息" id="school_menu" parent="main_school_root" action="school_list_action"/>
+
+        <!--二级菜单增加电教馆-->
         <menuitem name="电教馆" id="EIEC_menu" parent="main_school_root" action="EIEC_form_action"/>
 
 
