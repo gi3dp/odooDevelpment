@@ -1,0 +1,58 @@
+<!--?xml version="1.0" encoding="UTF-8 ?-->
+<odoo>
+    <data>
+        <!-- 继承crm.lead模型和crm.crm_case_form_view_leads视图-->
+        <record model="ir.ui.view" id="crm_enhanceLead_form_view">
+            <field name="name">crm.enhanceLead</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="arch" type="xml">
+                <!--没有成功。想用xpath修改res.partner的值应用过来_-->
+                <!--<xpath expr="//group/group[1]/field[1]/@context" position="replace">-->
+                    <!--<attribute name="context">-->
+                        <!--{'default_name': contact_name, 'default_street': street, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id,  'default_phone': phone,  'default_user_id': user_id, 'default_team_id': team_id, 'default_website': website}-->
+                    <!--</attribute>-->
+                <!--</xpath>-->
+
+                <!--隐藏原来的fax，email，function，mobile，street2 -->
+                <field name="fax" position="replace">
+                    <field name="fax" attrs="{'invisible':True}"/>
+                </field>
+
+                <field name="email_from" position="replace">
+                    <field name="email_from" attrs="{'invisible':True}"/>
+                </field>
+
+                <field name="function" position="replace">
+                    <field name="function" attrs="{'invisible':True}"/>
+                </field>
+
+                <field name="mobile" position="replace">
+                    <field name="mobile" attrs="{'invisible':True}"/>
+                </field>
+
+                <field name="street2" position="replace">
+                    <field name="street2" attrs="{'invisible':True}"/>
+                </field>
+
+                <!-- 在phone后增加网站-->
+                <field name="phone" position="after">
+                    <field name="website" widget="web"/>
+                </field>
+
+                <!-- 在notebook page第一页增加主营业务-->
+                <xpath expr="//notebook/page[1]" position="before">
+                        <page string= "主营业务">
+                            <field name="mainBusiness" />
+                        </page>
+                </xpath>
+
+                <!--电话前增加注册资金-->
+                <field name="phone" position="before">
+                    <field name="registteredCaption"/>
+                </field>
+
+            </field>
+        </record>
+    </data>
+</odoo>
