@@ -1,4 +1,3 @@
-<!--?xml version="1.0" encoding="UTF-8 ?-->
 <odoo>
     <data>
         <!-- 继承crm.lead模型和crm.crm_case_form_view_leads视图-->

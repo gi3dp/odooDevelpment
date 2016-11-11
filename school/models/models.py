@@ -27,6 +27,8 @@ class School(models.Model):
     x_Name = fields.Char(required=False, string="联系人")
     x_contractPhoneNumber = fields.Char(required=False, string="联系人电话(座机或手机)")
 
+    eiec_id = fields.Many2one('res.partner',domain="[('is_eiec','=',True)]")
+
     @api.onchange('x_receptionData')
     def _take_cerfication_number(self):
         for r in self:

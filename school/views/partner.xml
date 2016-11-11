@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        <!--继承base res partner的主要form视图，并加一页售后服务。加上相关字段。-->
+        <record model="ir.ui.view" id="partner_customer_support_form_view">
+            <field name="name">res.partner.form.customerSupport</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <!-- 在notebook page第一页增加主营业务-->
+                <xpath expr="//notebook/page[3]" position="before">
+                        <page name="customer_support" string= "Customer Support">
+                            <group name="container_row_2">
+                                <group name="edu_service" string="Edu Service">
+                                    <field name="is_school" attrs="{'invisible': [('is_company','=', False)]}"/>
+                                    <field name="is_eiec" attrs="{'invisible': [('is_company','=', False)]}"/>
+                                    <field name="subordinateSchool" attrs="{'invisible': [('is_eiec','=', False)]}"/>
+                                </group>
+                                <group name="distributor_service" string="Distributor Service">
+                                    <field name="test3Dtaoshu"/>
+                                    <field name="testPLA"/>
+                                </group>
+                            </group>
+                        </page>
+                </xpath>
+
+
+            </field>
+        </record>
+    </data>
+</odoo>

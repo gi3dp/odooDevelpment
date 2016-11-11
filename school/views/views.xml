@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
 
                <!--一树视图-->
-                <tree string="school tree">
+                <tree string="school tree" >
                     <!--基本字段定义-->
                     <field name="x_city"/>
                     <field name="x_town"/>
@@ -47,7 +47,7 @@
                                 <field name="x_city"/>
                                 <field name="x_town"/>
                                 <field name="x_schoolAddress"/>
-                                <field name="x_equipmentNumber"/>
+                                <field name="eiec_id"/>
 
 
                             </group>
@@ -56,6 +56,7 @@
                                 <field name="x_checkCertificationNumber"/>
                                 <field name="x_receptionData"/>
                                 <field name="x_remark"/>
+                                <field name="x_equipmentNumber"/>
 
 
                             </group>
@@ -103,12 +104,12 @@
                      <!--点action后默认显示为验收的-->
                     <filter string="有多套设备" name="multiDevice" domain="[('x_equipmentNumber', '>', 1)]"/>
                     <separator/>
-                      <!--在售产品里面添加四种报价单，单独分拆的报价-->
+                      <!--筛选地州-->
                     <filter string="服务组1" help="陈治" filter_domain="['|','|','|','|','|','|','|','|','|','|','|',
                     ('x_city','=','大理州'),('x_city','=','楚雄州'),('x_city','=','丽江'),('x_city','=','德宏州'),
                     ('x_city','=','迪庆州'),('x_city','=','怒江'),('x_city','=','保山市'),
                     ('x_town','=','西山'),('x_town','=','晋宁'),('x_town','=','富民'),('x_town','=','禄劝'),('x_town','=','安宁市')]"/>
-                    <filter string="服务组3" help="杨文智" filter_domain="['|','|','|','|','|','|','|','|',
+                    <filter string="服务组3" help="刘奉赫" filter_domain="['|','|','|','|','|','|','|','|',
                     ('x_city','=','文山'),('x_city','=','红河州'),('x_city','=','玉溪'),
                     ('x_town','=','官渡'),('x_town','=','呈贡'),('x_town','=','宜良'),('x_town','=','石林'),('x_town','=','阳宗海'),('x_town','=','大板桥')]"/>
                     <filter string="服务组2" help="何其霖" filter_domain="['|','|','|','|','|','|','|','|','|',
@@ -129,6 +130,7 @@
             <field name="res_model">school.school</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_notCheck':1}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">登记一位老师的信息
                 </p>
@@ -140,6 +142,8 @@
             <field name="res_model">res.partner</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
+            <field name="domain"> [('is_eiec','=',True)]</field>
+
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">登记某电教馆的信息
                 </p>
