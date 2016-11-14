@@ -10,25 +10,24 @@
                <!--一树视图-->
                 <tree string="school tree" >
                     <!--基本字段定义-->
-                    <field name="x_city"/>
-                    <field name="x_town"/>
+                    <!--<field name="x_city"/>-->
+                    <!--<field name="x_town"/>-->
                     <field name="x_schoolName"/>
                     <field name="x_equipmentNumber"/>
-                    <field name="x_schoolAddress"/>
+                    <!--<field name="x_schoolAddress"/>-->
                     <field name="x_Name"/>
                     <field name="x_contractPhoneNumber"/>
                     <field name="x_checkCondition"/>
                     <field name="x_checkCertificationNumber"/>
-
                     <field name="x_receptionData"/>
-                    <field name="x_trainingteacher"/>
-                    <field name="x_phoneNumber"/>
+                    <!--<field name="x_trainingteacher"/>-->
+                    <!--<field name="x_phoneNumber"/>-->
 
                     <!--contact2和x_phoneNumber2在树视图中不可见-->
                     <!--<field name="x_contact2"/>-->
                     <!--<field name="x_phoneNumber2"/>-->
-                    <field name="x_QQ"/>
-                    <field name="x_mail"/>
+                    <!--<field name="x_QQ"/>-->
+                    <!--<field name="x_mail"/>-->
                     <field name="x_remark"/>
 
                 </tree>
