@@ -6,7 +6,7 @@
       <field name="model">news.news</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="title"/>
+          <field name="name"/>
           <field name="source_id"/>
           <field name="website" widget='url'/>
           <field name="_create_date"/>
@@ -22,7 +22,7 @@
         <form string="新闻视图">
           <sheet>
             <group>
-          <field name="title"/>
+          <field name="name"/>
           <field name="source_id"/>
           <field name="website"/>
           <field name="_create_date"/>

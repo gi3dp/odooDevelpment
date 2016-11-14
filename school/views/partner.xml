@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
         <!--继承base res partner的主要form视图，并加一页售后服务。加上相关字段。-->

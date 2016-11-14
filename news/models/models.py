@@ -5,10 +5,10 @@ from openerp import models, fields, api
 class News(models.Model):
     _name = 'news.news'
 
-    title = fields.Char(required=True,string="标题")
+    name = fields.Char(required=True,string="标题")
     _create_date = fields.Date(string="发布日期",required=True)
     website = fields.Char(string="详细网址",required=True)
-    source_id = fields.Many2one('news.website',string="来源",required=True)
+    source_id = fields.Many2one('news.website',string="来源")
     categorization = fields.Selection([('wechat','微信'),('weibo','微博'),
                                        ('video','视频'),('outer_news','外部新闻'),('inner_news','内部新闻')],
                                       default = 'outer_news')
